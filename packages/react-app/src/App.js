@@ -26,21 +26,19 @@ const App = () => {
 
           <div className={styles.exchangeBoxWrapper}>
             <div className={styles.exchangeBox}>
-              <div className="pink gradient" />
+              <div className="pink_gradient" />
               <div className={styles.exchange}>
-                <p className="text-white">
-                  {account ? (
-                    poolsLoading ? (
-                      <Loader title="Loading pools, please wait" />
-                    ) : (
-                      <Exchange />
-                    )
+                {account ? (
+                  poolsLoading ? (
+                    <Loader title="Loading pools, please wait" />
                   ) : (
-                    <Loader title="Please connect your wallet" />
-                  )}
-                </p>
+                    <Exchange />
+                  )
+                ) : (
+                  <Loader title="Please connect your wallet" />
+                )}
               </div>
-              <div className="blue gradient" />
+              <div className="blue_gradient" />
             </div>
           </div>
         </div>
