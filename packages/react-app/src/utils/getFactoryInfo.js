@@ -6,7 +6,7 @@ export const getFactoryInfo = async (factoryAddress, web3) => {
   const factory = new web3.eth.Contract(abis.factory, factoryAddress);
 
   const factoryInfo = {
-    fee: await factory.methods.fee().call(),
+    fee: await factory.methods.feeTo().call(),
     feeToSetter: await factory.methods.feeToSetter().call(),
     allPairsLength: await factory.methods.allPairsLength().call(),
     allPairs: [],
@@ -17,4 +17,6 @@ export const getFactoryInfo = async (factoryAddress, web3) => {
   }
 
   factoryInfo.pairsInfo = await getPairsInfo(factoryInfo.allPairs, web3);
+
+  return factoryInfo;
 };
