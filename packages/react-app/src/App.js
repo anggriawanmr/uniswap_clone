@@ -8,7 +8,7 @@ import { Exchange, Loader, WalletButton } from './components';
 
 const App = () => {
   const { account } = useEthers();
-  const [loading, pools] = usePools();
+  const [poolsLoading, pools] = usePools();
 
   return (
     <div className={styles.container}>
@@ -16,7 +16,7 @@ const App = () => {
         <header className={styles.header}>
           <img
             src={uniswapLogo}
-            alt="uniswap logo"
+            alt="uniswap-logo"
             className="w-16 h-16 object-contain"
           />
           <WalletButton />
@@ -30,7 +30,7 @@ const App = () => {
               <div className="pink_gradient" />
               <div className={styles.exchange}>
                 {account ? (
-                  loading ? (
+                  poolsLoading ? (
                     <Loader title="Loading pools, please wait" />
                   ) : (
                     <Exchange pools={pools} />

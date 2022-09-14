@@ -47,7 +47,7 @@ const AmountIn = ({
           {activeCurrency}
           <img
             src={chevronDown}
-            alt="Chevron Down"
+            alt="chevron-down"
             className={`w-4 h-4 object-contain ml-2 ${
               showList ? 'rotate-180' : 'rotate-0'
             }`}
@@ -55,7 +55,7 @@ const AmountIn = ({
         </button>
 
         {showList && (
-          <ul className={styles.currencyList}>
+          <ul ref={ref} className={styles.currencyList}>
             {Object.entries(currencies).map(([token, tokenName], index) => (
               <li
                 key={index}
