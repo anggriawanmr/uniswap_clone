@@ -23,7 +23,8 @@ import { ROUTER_ADDRESS } from '../config';
 import { AmountIn, AmountOut, Balance } from './';
 import styles from '../styles';
 
-const Exchange = () => {
+const Exchange = ({ pools }) => {
+  console.log(pools);
   const { account } = useEthers();
   const [fromValue, setFromValue] = useState('0');
   const [fromToken, setFromToken] = useState(pools[0].token0Address);
@@ -44,7 +45,7 @@ const Exchange = () => {
     useTokenAllowance(fromToken, account, ROUTER_ADDRESS) || parseUnits('0');
   const approvedNeeded = fromValueBigNumber.gt(tokenAllowance);
   const fromValueIsGreatThan0 = fromValueBigNumber.gt(parseUnits('0'));
-  const hasEnoughBalance = fromValueBigNuber.lte(
+  const hasEnoughBalance = fromValueBigNumber.lte(
     fromTokenBalance ?? parseUnits('0')
   );
 
