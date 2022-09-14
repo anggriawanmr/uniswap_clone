@@ -142,12 +142,12 @@ const Exchange = () => {
         />
         <Balance toTokenBalance={toTokenBalance} />
       </div>
-      {'approvedNeeded' && !isSwapping ? (
+      {approvedNeeded && !isSwapping ? (
         <button
-          disabled={!'canApprove'}
-          onClick={() => {}}
+          disabled={!canApprove}
+          onClick={onApproveRequested}
           className={`${
-            'canApprove'
+            canApprove
               ? 'bg-site-pink text-white'
               : 'bg-site-dim2 text-site-dim2'
           } ${styles.actionButton}`}
@@ -156,26 +156,24 @@ const Exchange = () => {
         </button>
       ) : (
         <button
-          disabled={!'canSwap'}
-          onClick={() => {}}
+          disabled={!canSwap}
+          onClick={onSwapRequested}
           className={`${
-            'canSwap'
-              ? 'bg-site-pink text-white'
-              : 'bg-site-dim2 text-site-dim2'
+            canSwap ? 'bg-site-pink text-white' : 'bg-site-dim2 text-site-dim2'
           } ${styles.actionButton}`}
         >
           {isSwapping
             ? 'Swapping...'
-            : 'hasEnoughBalance'
+            : hasEnoughBalance
             ? 'Swap'
             : 'Insufficient Balance'}
         </button>
       )}
 
-      {'failureMessage' && !'resetState' ? (
-        <p className={styles.message}>{'failureMessage'}</p>
-      ) : 'successMessage' ? (
-        <p className={styles.message}>{'successMessage'}</p>
+      {failureMessage && !resetState ? (
+        <p className={styles.message}>{failureMessage}</p>
+      ) : successMessage ? (
+        <p className={styles.message}>{successMessage}</p>
       ) : (
         ''
       )}
